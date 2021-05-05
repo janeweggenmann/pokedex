@@ -29,9 +29,9 @@ let pokemonList = [
 //list Pokemon name and height on page
 for (let i = 0; i < 5; i++) {
   if (pokemonList[i].height > 1.5) {
-    //if height over 1.5 then call out special large size
-    document.write (pokemonList[i].name + " (height: " + pokemonList[i].height + ") - Wow, that's big!" + "<br>");
+      //if height over 1.5 then call out special large size
+      document.write (pokemonList[i].name + " (height: " + pokemonList[i].height + ") - Wow, that's big!" + "<br>");
   } else {
-    document.write (pokemonList[i].name + " (height: " + pokemonList[i].height + ")" + "<br>");
+      document.write (pokemonList[i].name + " (height: " + pokemonList[i].height + ")" + "<br>");
 }
 }
