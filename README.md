@@ -1,14 +1,14 @@
-# simple-js-app
+# Achievement 1 Project: JavaScript App (Pokédex)
 
 Last updated: May 9, 2021
 
-## Project Description
-This is a small web application using HTML, CSS, and JavaScript that loads
-data from an external Pokemon API.
+## Objective
+To build a small web application with HTML, CSS, and JavaScript that loads data from an external API and enables the viewing of data points in detail.
+
 
 ## Project Dependencies
 
-This Project will use
+This project will use:
 
 * HTML
 * CSS
