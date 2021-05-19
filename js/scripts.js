@@ -47,8 +47,14 @@ let pokemonRepository = (function () {
 
     button.innerText = pokemon.name;
     button.classList.add("pokemon-button");
+    button.addEventListener('click', function() {
+      showDetails(pokemon.name)
+    });
   }
 
+  function showDetails(pokemon) {
+	console.log(pokemon);
+  }
 
   return {
     add: add,
