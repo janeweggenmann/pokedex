@@ -1,3 +1,4 @@
+//IIFE Function
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=30';
@@ -26,27 +27,31 @@ let pokemonRepository = (function () {
 
     button.innerText = pokemon.name;
     button.classList.add("pokemon-button");
+
+    //When user clicks on pokemon, show details function will run
     button.addEventListener('click', function() {
       showDetails(pokemon)
     });
   }
 
+//pull list of pokemon from API
   function loadList() {
-      return fetch(apiUrl).then(function (response) {
-        return response.json();
-      }).then(function (json) {
-        json.results.forEach(function (item) {
-          let pokemon = {
-            name: item.name,
-            detailsUrl: item.url
-          };
-          add(pokemon);
-        });
-      }).catch(function (e) {
-        console.error(e);
-      })
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
   }
 
+//load details of pokemon from list pulled from API
   function loadDetails(pokemon) {
     let url = pokemon.detailsUrl;
     return fetch(url).then(function (response) {
