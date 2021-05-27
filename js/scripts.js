@@ -65,7 +65,7 @@ let pokemonRepository = (function () {
       pokemon.height = details.height;
       pokemon.types = details.types;
       pokemon.weight = details.weight;
-      pokemon.typename = (pokemon.types[0].type.name);
+      pokemon.typename = pokemon.types;
     }).catch(function (e) {
       console.error(e);
     });
@@ -95,7 +95,13 @@ let pokemonRepository = (function () {
     let modalWeight = document.createElement("p");
     modalWeight.innerText = "Weight: " + pokemon.weight;
     let modalType = document.createElement("p");
-    modalType.innerText = "Type: " + pokemon.typename;
+    modalType.innerText =
+      "Type: " +
+      pokemon.typename
+        .map(function (item) {
+          return item.type.name;
+        })
+        .join(", ");
 
     //Append close button, h1, and p to modal
     modal.appendChild(closeButtonElement);
