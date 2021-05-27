@@ -34,7 +34,7 @@ let pokemonRepository = (function () {
 
     //When user clicks on pokemon, show details
     button.addEventListener('click', function() {
-      showDetails(pokemon)
+      showDetails(pokemon);
     });
   }
 
@@ -64,9 +64,12 @@ let pokemonRepository = (function () {
       pokemon.imageUrl = details.sprites.front_default;
       pokemon.height = details.height;
       pokemon.types = details.types;
+      pokemon.weight = details.weight;
+      pokemon.typename = (pokemon.types[0].type.name);
     }).catch(function (e) {
       console.error(e);
     });
+    console.log(pokemon);
   }
 
   //Create a modal when "showModal" function is called
@@ -129,9 +132,10 @@ let pokemonRepository = (function () {
 
   //When showing details, load details and show modal
   function showDetails(pokemon) {
-    pokemonRepository.loadDetails(pokemon).then(function () {
-      console.log(pokemon);
-    });
+      loadDetails(pokemon).then(function() {
+        showModal(pokemon);
+        console.log(pokemon);
+      });
   }
 
   return {
