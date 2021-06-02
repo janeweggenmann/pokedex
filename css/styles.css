@@ -1,92 +1,44 @@
+
+.page-container {
+  margin-top: 60px;
+}
+
 h1 {
   text-align: center;
-  text-transform: capitalize
+  text-transform: capitalize;
 }
-
-/* Modal is not visible until Show Modal is called, which applies the "is visible" class */
-#modal-container {
-  display: none;
-}
-
-/* Modal is visible after Show Modal function is called */
-#modal-container.is-visible {
-  display: block;
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  /* to show it above other content */
-  z-index: 999;
-  /* to allow scrolling if the screen is not high enough*/
-  overflow: auto;
-  /* this is used to center the modal */
-  display: grid;
-  text-align: center;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
-  flex-direction: column;
-  align-items: center;
-}
-
-.close-modal {
-  float: right;
-  -webkit-appearance: none;
-  border: 0;
-  background: none;
-  color: #777;
-  text-decoration: underline;
-  text-align: right;
-}
-
-.modal h1 {
+.modal-title {
   margin-top: 0;
   text-align: center;
 }
 
-.modal p {
+.modal-body {
   margin-bottom: 20px;
   text-align: center;
   text-transform: capitalize;
 }
 
-.modal img {
+.modal-img {
+  width: 40%;
   margin-bottom: 0;
   margin-left: 40px;
 }
 
-.pokemon-button:hover,
-.pokemon-button:focus {
+.btn-dark:hover,
+.btn-dark:focus {
   cursor: pointer;
-  color: black;
-  background-color: grey;
-  opacity: 0.8;
   text-transform: capitalize;
 }
 
-.pokemon-button {
-  background-color: lightgrey;
-  color: black;
+.btn-dark {
   text-decoration: none;
   padding: 15px;
-  border-radius: 3px;
   width: 200px;
   margin: 5px;
   text-transform: capitalize;
 }
 
-.pokemon-list {
+.list-group {
   list-style-type: none;
   display: flex;
   flex-direction: column;
@@ -96,7 +48,7 @@ h1 {
 }
 
 @media (min-width: 450px) and (max-width: 849px){
-  .pokemon-list {
+  .list-group {
     margin: 0 auto;
     padding: 0 20%;
     display: grid;
@@ -109,7 +61,7 @@ h1 {
 }
 
 @media (min-width: 850px) {
-  .pokemon-list {
+  .list-group {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20%;
@@ -119,8 +71,5 @@ h1 {
     justify-content: center;
     align-items: center;
     justify-items: center;
-  }
-  .pokemon-button {
-    width: 250px;
   }
 }
