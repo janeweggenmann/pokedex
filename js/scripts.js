@@ -2,8 +2,7 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=30';
-  //Selecting modal container id from HTML file
-  let modalContainer = document.querySelector("#modal-container");
+
 
   //add pokemon function
   function add(pokemon) {
@@ -75,34 +74,8 @@ let pokemonRepository = (function () {
     console.log(pokemon);
   }
 
-
-    //When showModal function is called, make modal visible
-    modalContainer.classList.add("is-visible");
-  }
-
-  //To hide the modal, take away the "is visible" class
-  function hideModal() {
-    modalContainer.classList.remove("is-visible");
-  }
-
-  //Hide the modal when the Escape key is pressed
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalContainer.classList.contains ("is-visible")) {
-      hideModal ();
-    }
-  });
-  //Hide the modal when you click outside of the modal
-  modalContainer.addEventListener("click", (e) => {
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal ();
-    }
-  });
+ //When showing details, load details and show modal
   function showDetails(pokemon) {
-      loadDetails(pokemon).then(function() {
-        showModal(pokemon);
-        console.log(pokemon);
-      });
       pokemonRepository.loadDetails(pokemon).then(function() {
         let modalBody = document.querySelector(".modal-body");
         let modalTitle = document.querySelector(".modal-title");
@@ -151,7 +124,6 @@ let pokemonRepository = (function () {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
-    showDetails: showDetails,
     loadList: loadList,
     loadDetails: loadDetails
   };
