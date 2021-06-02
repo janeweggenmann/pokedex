@@ -22,15 +22,18 @@ let pokemonRepository = (function () {
 
   //Add new list item and button for each pokemon
   function addListItem(pokemon) {
-    let pokemonList = document.querySelector(".pokemon-list");
+    let pokemonList = document.querySelector(".list-group");
+
     let listItem = document.createElement("li");
+    listItem.classList.add("group-list-item","list-group-item-action");
+
     let button = document.createElement("button");
-
-	  listItem.appendChild(button);
-    pokemonList.appendChild(listItem);
-
     button.innerText = pokemon.name;
-    button.classList.add("pokemon-button");
+    button.classList.add("btn", "btn-dark");
+    button.setAttribute("data-target","#modal-container","data-toggle","modal");
+
+    pokemonList.appendChild(listItem);
+    listItem.appendChild(button);
 
     //When user clicks on pokemon, show details
     button.addEventListener('click', function() {
@@ -52,7 +55,7 @@ let pokemonRepository = (function () {
       });
     }).catch(function (e) {
       console.error(e);
-    })
+    });
   }
 
   //load details of pokemon from API
@@ -72,46 +75,6 @@ let pokemonRepository = (function () {
     console.log(pokemon);
   }
 
-  //Create a modal when "showModal" function is called
-  function showModal (pokemon) {
-    modalContainer.innerHTML = "";
-    let modal = document.createElement("div");
-    modal.classList.add("modal");
-
-    //When modal is created, also create a close button
-    let closeButtonElement = document.createElement("button");
-    closeButtonElement.classList.add("close-modal");
-    closeButtonElement.innerText = "Close";
-    //Hide the modal when the close button is clicked
-    closeButtonElement.addEventListener("click", hideModal);
-
-    //When modal is created, create h1 and p elements
-    let modalImage = document.createElement('img');
-    modalImage.src = pokemon.imageUrl;
-    let modalTitle = document.createElement("h1");
-    modalTitle.innerText = pokemon.name;
-    let modalHeight = document.createElement("p");
-    modalHeight.innerText = "Height: " + pokemon.height + "m";
-    let modalWeight = document.createElement("p");
-    modalWeight.innerText = "Weight: " + pokemon.weight;
-    let modalType = document.createElement("p");
-    modalType.innerText =
-      "Type: " +
-      pokemon.typename
-        .map(function (item) {
-          return item.type.name;
-        })
-        .join(", ");
-
-    //Append close button, h1, and p to modal
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(modalImage);
-    modal.appendChild(modalTitle);
-    modal.appendChild(modalHeight);
-    modal.appendChild(modalWeight);
-    modal.appendChild(modalType);
-    //Append modal to modal container
-    modalContainer.appendChild(modal);
 
     //When showModal function is called, make modal visible
     modalContainer.classList.add("is-visible");
@@ -135,13 +98,53 @@ let pokemonRepository = (function () {
       hideModal ();
     }
   });
-
-  //When showing details, load details and show modal
   function showDetails(pokemon) {
       loadDetails(pokemon).then(function() {
         showModal(pokemon);
         console.log(pokemon);
       });
+      pokemonRepository.loadDetails(pokemon).then(function() {
+        let modalBody = document.querySelector(".modal-body");
+        let modalTitle = document.querySelector(".modal-title");
+
+        //Clear contents of modal title and body
+        modalBody.innerHTML= "";
+        modalTitle.innerHTML = "";
+
+        //When modal is created, create h1 and p elements
+        let nameElement = document.createElement("h1");
+        nameElement.innerText = pokemon.name;
+
+        let imageElement = document.createElement('img');
+        imageElement.src = pokemon.imageUrl;
+        imageElement.classList.add("modal-img");
+
+        let heightElement = document.createElement("p");
+        heightElement.innerText = "Height: " + pokemon.height + "m";
+
+        let weightElement = document.createElement("p");
+        weightElement.innerText = "Weight: " + pokemon.weight;
+
+        let typeElement = document.createElement("p");
+        typeElement.innerText =
+          "Type: " +
+          pokemon.typename
+            .map(function (item) {
+              return item.type.name;
+            })
+            .join(", ");
+
+        //Append h1 and p to modal
+        modalTitle.append(nameElement);
+        modalBody.append(imageElement);
+        modalBody.append(heightElement);
+        modalBody.append(weightElement);
+        modalBody.append(typeElement);
+
+        $("#modal-container").modal('toggle');
+
+    console.log(pokemon);
+        });
   }
 
   return {
