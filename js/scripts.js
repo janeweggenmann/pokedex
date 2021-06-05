@@ -71,7 +71,6 @@ let pokemonRepository = (function () {
     }).catch(function (e) {
       console.error(e);
     });
-    console.log(pokemon);
   }
 
  //When showing details, load details and show modal
@@ -115,8 +114,6 @@ let pokemonRepository = (function () {
         modalBody.append(typeElement);
 
         $("#modal-container").modal('toggle');
-
-    console.log(pokemon);
         });
   }
 
