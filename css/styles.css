@@ -15,10 +15,15 @@ p {
 .btn-outline-light {
   color: #ffcb05;
   border-color: #ffcb05;
+  margin: 5px 0;
 }
 
 .navbar-collapse {
   flex-grow: unset;
+}
+
+.navbar-brand {
+  margin-bottom: 10px;
 }
 
 .modal-title {
