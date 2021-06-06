@@ -139,3 +139,22 @@ pokemonRepository.loadList().then(function() {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+//Search functionality
+function searchPokemon() {
+  var input, filter, ul, li, name, i, txtValue;
+  input = document.getElementById('search-form-input');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById('pokemon-list-group');
+  li = ul.getElementsByTagName('li');
+
+  for (i = 0; i < li.length; i++) {
+    name = li[i].getElementsByTagName('button')[0];
+    txtValue = name.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = '';
+    } else {
+      li[i].style.display = 'none';
+    }
+  }
+}
